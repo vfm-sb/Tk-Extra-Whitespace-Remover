@@ -5,7 +5,7 @@ Extra Whitespace Remover Script (Powered by Tkinter)
 __author__ = "VFM | SB"
 __email__ = "vfm_sb@proton.me"
 __license__ = "MIT"
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
 import tkinter as tk
 from tkinter import ttk
@@ -24,6 +24,13 @@ def remove_extra_whitespace(event):
 def copy_output_text():
     root.clipboard_clear()
     root.clipboard_append(output_text_widget.get("1.0", tk.END))
+
+
+def clear_input_text():
+    input_text_widget.delete("1.0", tk.END)
+    output_text_widget.config(state="normal")
+    output_text_widget.delete("1.0", tk.END)
+    output_text_widget.config(state="disabled")
 
 
 root = tk.Tk()
@@ -47,9 +54,14 @@ output_text_widget.pack(padx=10, pady=(0, 10))
 
 input_text_widget.bind("<KeyRelease>", remove_extra_whitespace)
 
+buttons_frame = ttk.Frame(root)
+buttons_frame.pack(fill="x", padx=(10, 10), pady=(0, 10))
 
-copy_button = ttk.Button(root, text="Copy Output", command=copy_output_text)
-copy_button.pack(side=tk.RIGHT, padx=(0, 10), pady=(0, 10))
+clear_button = ttk.Button(buttons_frame, text="Clear Input", command=clear_input_text)
+clear_button.pack(side="left")
+
+copy_button = ttk.Button(buttons_frame, text="Copy Output", command=copy_output_text)
+copy_button.pack(side="right")
 
 
 root.mainloop()
