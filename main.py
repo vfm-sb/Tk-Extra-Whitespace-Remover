@@ -5,7 +5,7 @@ Extra Whitespace Remover Script (Powered by Tkinter)
 __author__ = "VFM | SB"
 __email__ = "vfm_sb@proton.me"
 __license__ = "MIT"
-__version__ = "0.1.0"
+__version__ = "0.1.1"
 
 import tkinter as tk
 from tkinter import ttk
@@ -37,10 +37,12 @@ header.pack(pady=10)
 
 input_text_widget = tk.Text(root, width=80, height=4)
 input_text_widget["font"] = "Menlo", 18
+input_text_widget["wrap"] = "word"
 input_text_widget.pack(padx=10, pady=(0, 10))
 
 output_text_widget = tk.Text(root, width=80, height=4, state="disabled")
 output_text_widget["font"] = "Menlo", 18
+output_text_widget["wrap"] = "word"
 output_text_widget.pack(padx=10, pady=(0, 10))
 
 input_text_widget.bind("<KeyRelease>", remove_extra_whitespace)
